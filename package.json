@@ -10,9 +10,14 @@
     "@types/node": "^12.12.54",
     "@types/react": "^16.9.48",
     "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.5",
+    "bootstrap": "^4.5.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "reactstrap": "^8.5.1",
+    "tone": "^14.7.39",
     "typescript": "^3.7.5"
   },
   "scripts": {
@@ -35,5 +40,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/reactstrap": "^8.5.1"
   }
 }

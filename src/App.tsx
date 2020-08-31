@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from "react";
+import "./App.css";
+import Header from "./components/Interface/Header";
+import { BrowserRouter as Router } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface sessionTokenType {
+  sessionToken: string;
+}
+
+class App extends Component<any> {
+  state: sessionTokenType;
+
+  constructor(props: any) {
+    super(props);
+    this.state = {sessionToken: ""};
+    this.clearToken = this.clearToken.bind(this);
+  }
+
+  componentDidMount(){
+    if (localStorage.getItem('token')){
+      this.setState({ sessionToken: localStorage.getItem('token')});
+    }
+  }
+
+
+  clearToken() {
+    localStorage.clear();
+    this.setState({ sessionToken: '' });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Router>
+          <Header clickLogout={this.clearToken} token={this.state.sessionToken} />
+        </Router>
+      </div>
+    );
+  }
 }
 
 export default App;
