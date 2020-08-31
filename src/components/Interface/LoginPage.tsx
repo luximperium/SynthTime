@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component } from 'react';
 import "../../App.css";
 import Auth from "../Auth/Auth"
 import ProfilePage from "./Profile"
@@ -16,8 +16,9 @@ class LoginPage extends Component<any> {
     }
 
     componentDidMount() {
-        if (localStorage.getItem('token') === undefined){
-            this.setState({sessionToken:'broken'});
+        if (localStorage.getItem('token') === 'undefined'){
+          localStorage.clear();
+          this.setState({ sessionToken: '' });
         } else if (localStorage.getItem('token')) {
           this.setState({sessionToken: localStorage.getItem('token')})
         }

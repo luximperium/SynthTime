@@ -45,7 +45,7 @@ class Login extends Component<any, loginprofile> {
           window.location.reload(true);
         }
       });
-  };
+  }
 
   render() {
     return (
@@ -54,20 +54,20 @@ class Login extends Component<any, loginprofile> {
           <FormGroup>
             <Label htmlFor="username">Username:</Label>
             <Input
-              onChange={(e) => this.setState({username: e.target.value})}
+              onChange={(e) => this.setState({ username: e.target.value })}
               name="username"
               value={this.state.username}
               required
               placeholder="username1"
               minLength={4}
-              pattern="^(?=.*[A-Za-z])((?=.*\d)|(?=.*[@$!%*#?&]))[A-Za-z\d@$!%*#?&]{4,}$"
+              pattern="^(?=.*[A-Za-z])|(?=.*[@$!%*#?&]))[A-Za-z\d@$!%*#?&]{4,}$"
             />
             <FormFeedback></FormFeedback>
           </FormGroup>
           <FormGroup>
             <Label htmlFor="password">Password:</Label>
             <Input
-              onChange={(e) => this.setState({password: e.target.value})}
+              onChange={(e) => this.setState({ password: e.target.value })}
               name="password"
               value={this.state.password}
               required

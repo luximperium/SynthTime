@@ -1,11 +1,5 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-} from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import Signup from "./Register";
 import Login from "./Login";
 
@@ -49,8 +43,12 @@ class Auth extends Component<any> {
   render() {
     return (
       <div className="main">
+        <h4>
+          If you return to this page instead of your profile after trying to
+          login, your username or password is incorrect.
+        </h4>
         <div className="mainDiv">
-          <Button onClick={this.toggle}>Not Signed In?</Button>
+          <Button onClick={this.toggle}>Login</Button>
           {!this.state.login ? (
             <Modal isOpen={this.state.modal} toggle={this.toggle}>
               <ModalHeader toggle={this.toggle}>{this.title()}</ModalHeader>

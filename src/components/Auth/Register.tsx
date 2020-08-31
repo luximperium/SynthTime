@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component } from "react";
 import {
   Form,
   FormGroup,
@@ -9,7 +9,7 @@ import {
 } from "reactstrap";
 // import validateSignup from './validateSignup';
 
-interface loginprofile {
+interface registerprofile {
   email: string;
   username: string;
   password: string;
@@ -17,8 +17,8 @@ interface loginprofile {
   lastName: string;
 }
 
-class Register extends Component<any, loginprofile> {
-  state: loginprofile;
+class Register extends Component<any, registerprofile> {
+  state: registerprofile;
 
   constructor(props: any) {
     super(props);
@@ -75,7 +75,7 @@ class Register extends Component<any, loginprofile> {
               required
               placeholder="username1"
               minLength={4}
-              pattern="^(?=.*[A-Za-z])((?=.*\d)|(?=.*[@$!%*#?&]))[A-Za-z\d@$!%*#?&]{4,}$"
+              pattern="^(?=.*[A-Za-z])|(?=.*[@$!%*#?&]))[A-Za-z\d@$!%*#?&]{4,}$"
               //className= {errors.username ? ":invalid" : ":valid}"}
             />
             <FormFeedback></FormFeedback>
