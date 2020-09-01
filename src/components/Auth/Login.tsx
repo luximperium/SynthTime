@@ -26,7 +26,7 @@ class Login extends Component<any, loginprofile> {
 
   handleSubmit(event: any) {
     event.preventDefault();
-    fetch(`http://localhost:3000/users/login`, {
+    fetch(`http://localhost:3002/users/login`, {
       method: "POST",
       body: JSON.stringify({
         users: { username: this.state.username, password: this.state.password },

@@ -35,7 +35,7 @@ class Register extends Component<any, registerprofile> {
   handleSubmit(event: any) {
     event.preventDefault();
     //setIsSubmitting to true to be called in useEffect
-    fetch(`http://localhost:3000/users/register`, {
+    fetch(`http://localhost:3002/users/register`, {
       method: "POST",
       body: JSON.stringify({
         user: {
