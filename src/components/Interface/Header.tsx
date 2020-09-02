@@ -13,34 +13,54 @@ class Header extends Component<any> {
 
   render() {
     return (
-      <div>
+      <div className="Navbar">
         <Row>
-          <Col>
-            <Link to="/home">Home</Link>
+          <Col className="nav-link">
+            <Link
+              to="/home"
+              className="nav-link-link"
+              onClick={this.props.clickLogout}
+            >
+              Logout
+            </Link>
           </Col>
-          <Col>
-            <Link to="/profile">Profile</Link>
+          <Col className="nav-link">
+            <Link to="/profile" className="nav-link-link">
+              Profile
+            </Link>
           </Col>
-          <Col>
-            <Link to="/home" onClick={this.props.clickLogout}>Logout</Link>
+          <Col className="nav-link">
+            <Link to="/sequencer" className="nav-link-link">
+              Sequencer
+            </Link>
           </Col>
-          <Col>
-            <Link to="/sequencer">Sequencer</Link>
+          <Col className="nav-link">
+            <Link to="/home" className="nav-link-link">
+              Home
+            </Link>
           </Col>
         </Row>
         <div>
           <Switch>
             <Route exact path="/">
-              <Home />
+              <div className="main-content">
+                <Home />
+              </div>
             </Route>
             <Route exact path="/home">
-              <Home />
+              <div className="main-content">
+                <Home />
+              </div>
             </Route>
             <Route exact path="/profile">
-              <LoginPage />
+              <div className="main-content">
+                <LoginPage />
+              </div>
             </Route>
             <Route exact path="/sequencer">
-              <Sequencer />
+              <div className="main-content">
+                <Sequencer />
+              </div>
             </Route>
           </Switch>
         </div>

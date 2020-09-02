@@ -94,6 +94,10 @@ class Sequencer extends Component<any, sequencerState> {
   }
 
   loadProjectList() {
+    if (localStorage.getItem('token') === 'undefined') {
+      localStorage.clear();
+      alert('You must be logged in to do this.')
+    } else if (localStorage.getItem('token')) {
     fetch(`http://localhost:3002/project/users/mine`, {
       method: "GET",
       headers: new Headers({
@@ -106,6 +110,10 @@ class Sequencer extends Component<any, sequencerState> {
         this.setState({ projects: data });
         console.log(data);
       });
+    } else {
+      alert('You must be logged in to do this.')
+      localStorage.clear();
+    }
   }
 
   loadProject(incomingdata: any) {
@@ -208,7 +216,6 @@ class Sequencer extends Component<any, sequencerState> {
   handleClick(d: any) {
     this.setState({ projectInfo: d });
     this.loadProject(d.projectName);
-    console.log(d.projectName);
   }
 
   toggleDrop() {
@@ -249,10 +256,12 @@ class Sequencer extends Component<any, sequencerState> {
 
   render() {
     return (
-      <div>
+      <div className="sequencer">
         <h4>{this.state.projectName}</h4>
         <div>
+          <div className="content-container">
           <input
+            className="checkbox"
             type="checkbox"
             onChange={() =>
               this.state.check1
@@ -262,6 +271,7 @@ class Sequencer extends Component<any, sequencerState> {
             checked={this.state.check1}
           />
           <select
+          className="selectbox"
             name="Note"
             id="note"
             value={this.state.check1Note}
@@ -281,6 +291,7 @@ class Sequencer extends Component<any, sequencerState> {
             <option value="B3">B</option>
           </select>
           <input
+            className="checkbox"
             type="checkbox"
             onChange={() =>
               this.state.check2
@@ -290,6 +301,7 @@ class Sequencer extends Component<any, sequencerState> {
             checked={this.state.check2}
           />
           <select
+          className="selectbox"
             name="Note"
             id="note"
             value={this.state.check2Note}
@@ -309,6 +321,7 @@ class Sequencer extends Component<any, sequencerState> {
             <option value="B3">B</option>
           </select>
           <input
+          className="checkbox"
             type="checkbox"
             onChange={() =>
               this.state.check3
@@ -318,6 +331,7 @@ class Sequencer extends Component<any, sequencerState> {
             checked={this.state.check3}
           />
           <select
+          className="selectbox"
             name="Note"
             id="note"
             value={this.state.check3Note}
@@ -337,6 +351,7 @@ class Sequencer extends Component<any, sequencerState> {
             <option value="B3">B</option>
           </select>
           <input
+          className="checkbox"
             type="checkbox"
             onChange={() =>
               this.state.check4
@@ -346,6 +361,7 @@ class Sequencer extends Component<any, sequencerState> {
             checked={this.state.check4}
           />
           <select
+          className="selectbox"
             name="Note"
             id="note"
             value={this.state.check4Note}
@@ -366,6 +382,7 @@ class Sequencer extends Component<any, sequencerState> {
           </select>
           <div>
             <input
+            className="checkbox"
               type="checkbox"
               onChange={() =>
                 this.state.check5
@@ -375,11 +392,12 @@ class Sequencer extends Component<any, sequencerState> {
               checked={this.state.check5}
             />
             <select
-            name="Note"
-            id="note"
-            value={this.state.check5Note}
-            onChange={this.check5OptionHandleChange}
-          >
+            className="selectbox"
+              name="Note"
+              id="note"
+              value={this.state.check5Note}
+              onChange={this.check5OptionHandleChange}
+            >
               <option value="C3">C</option>
               <option value="C#3">C#</option>
               <option value="D3">D</option>
@@ -394,6 +412,7 @@ class Sequencer extends Component<any, sequencerState> {
               <option value="B3">B</option>
             </select>
             <input
+            className="checkbox"
               type="checkbox"
               onChange={() =>
                 this.state.check6
@@ -403,11 +422,12 @@ class Sequencer extends Component<any, sequencerState> {
               checked={this.state.check6}
             />
             <select
-            name="Note"
-            id="note"
-            value={this.state.check6Note}
-            onChange={this.check6OptionHandleChange}
-          >
+            className="selectbox"
+              name="Note"
+              id="note"
+              value={this.state.check6Note}
+              onChange={this.check6OptionHandleChange}
+            >
               <option value="C3">C</option>
               <option value="C#3">C#</option>
               <option value="D3">D</option>
@@ -422,6 +442,7 @@ class Sequencer extends Component<any, sequencerState> {
               <option value="B3">B</option>
             </select>
             <input
+            className="checkbox"
               type="checkbox"
               onChange={() =>
                 this.state.check7
@@ -431,11 +452,12 @@ class Sequencer extends Component<any, sequencerState> {
               checked={this.state.check7}
             />
             <select
-            name="Note"
-            id="note"
-            value={this.state.check7Note}
-            onChange={this.check7OptionHandleChange}
-          >
+            className="selectbox"
+              name="Note"
+              id="note"
+              value={this.state.check7Note}
+              onChange={this.check7OptionHandleChange}
+            >
               <option value="C3">C</option>
               <option value="C#3">C#</option>
               <option value="D3">D</option>
@@ -450,6 +472,7 @@ class Sequencer extends Component<any, sequencerState> {
               <option value="B3">B</option>
             </select>
             <input
+            className="checkbox"
               type="checkbox"
               onChange={() =>
                 this.state.check8
@@ -459,11 +482,12 @@ class Sequencer extends Component<any, sequencerState> {
               checked={this.state.check8}
             />
             <select
-            name="Note"
-            id="note"
-            value={this.state.check8Note}
-            onChange={this.check8OptionHandleChange}
-          >
+              className="selectbox"
+              name="Note"
+              id="note"
+              value={this.state.check8Note}
+              onChange={this.check8OptionHandleChange}
+            >
               <option value="C3">C</option>
               <option value="C#3">C#</option>
               <option value="D3">D</option>
@@ -478,9 +502,12 @@ class Sequencer extends Component<any, sequencerState> {
               <option value="B3">B</option>
             </select>
           </div>
-          <Button onClick={this.toggle}>Play/Pause</Button>
+          </div>
+          <h6>Pause and Replay to Update Playing Melody</h6>
+          <Button onClick={this.toggle} className="Play-Pause">Play/Pause</Button>
+          <h5>Save Your Project</h5>
           <Form onSubmit={this.createProject}>
-            <FormGroup>
+            <FormGroup className="projectform">
               <Input
                 onChange={(e) => this.setState({ projectName: e.target.value })}
                 name="Project Name"
@@ -490,24 +517,24 @@ class Sequencer extends Component<any, sequencerState> {
                 minLength={4}
               />
             </FormGroup>
-            <Button type="submit">Submit</Button>
+            <Button type="submit" className="SubmitButton">Save</Button>
           </Form>
           <h1>{this.state.projectResponse}</h1>
         </div>
         <div>
           <h5>Load Project</h5>
-          <ButtonDropdown isOpen={this.state.isOpen} toggle={this.toggleDrop}>
+          <ButtonDropdown>
             <DropdownToggle
-              className="ReleaseButton"
+              className="Button"
               caret
               onClick={this.loadProjectList}
             >
-              Your Projects
+              Load Saved Projects
             </DropdownToggle>
             <DropdownMenu className="releaseMenu">
               <DropdownItem header>Your Projects</DropdownItem>
               {this.state.projects.map((d: any) => (
-                <DropdownItem onClick={() => this.handleClick(d)}>
+                <DropdownItem className="ProjectButton" onClick={() => this.handleClick(d)}>
                   {d.projectName}
                 </DropdownItem>
               ))}

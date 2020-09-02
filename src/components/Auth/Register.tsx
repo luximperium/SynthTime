@@ -67,7 +67,7 @@ class Register extends Component<any, registerprofile> {
       <div>
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
-            <Label htmlFor="username">Username:</Label>
+            <Label className="updatetext" htmlFor="username">Username:</Label>
             <Input
               onChange={(e) => this.setState({username: e.target.value})}
               name="username"
@@ -81,7 +81,7 @@ class Register extends Component<any, registerprofile> {
             <FormFeedback></FormFeedback>
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="email">Email:</Label>
+            <Label className="updatetext" htmlFor="email">Email:</Label>
             <Input
               onChange={(e) => this.setState({email: e.target.value})}
               name="email"
@@ -95,7 +95,7 @@ class Register extends Component<any, registerprofile> {
             <FormFeedback></FormFeedback>
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="password">Password:</Label>
+            <Label className="updatetext" htmlFor="password">Password:</Label>
             <Input
               onChange={(e) => this.setState({password: e.target.value})}
               name="password"
@@ -109,7 +109,7 @@ class Register extends Component<any, registerprofile> {
             <FormFeedback></FormFeedback>
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="firstName">First Name:</Label>
+            <Label className="updatetext" htmlFor="firstName">First Name:</Label>
             <Input
               onChange={(e) => this.setState({firstName: e.target.value})}
               name="firstName"
@@ -117,14 +117,14 @@ class Register extends Component<any, registerprofile> {
             />
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="lastName">Last Name:</Label>
+            <Label className="updatetext" htmlFor="lastName">Last Name:</Label>
             <Input
               onChange={(e) => this.setState({lastName: e.target.value})}
               name="lastName"
               value={this.state.lastName}
             />
           </FormGroup>
-          <Button type="submit">Submit</Button>
+          <Button id="ButtonSpace" className="Button" type="submit">Register</Button>
         </Form>
       </div>
     );

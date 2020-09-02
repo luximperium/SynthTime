@@ -22,6 +22,19 @@ class Login extends Component<any, loginprofile> {
     super(props);
     this.state = { username: "", password: "" };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.authorization = this.authorization.bind(this);
+  }
+
+  authorization() {
+    if (localStorage.getItem('token') === 'undefined') {
+      localStorage.clear();
+      alert('Incorrect Username or Password.')
+    } else if (localStorage.getItem('token')) {
+      window.location.reload(true);
+    } else {
+      alert('Incorrect Username or Password.')
+      localStorage.clear();
+    }
   }
 
   handleSubmit(event: any) {
@@ -42,8 +55,8 @@ class Login extends Component<any, loginprofile> {
       .then(() => {
         if (localStorage.getItem("token")) {
           this.props.toggle();
-          window.location.reload(true);
         }
+        this.authorization();
       });
   }
 
@@ -52,7 +65,7 @@ class Login extends Component<any, loginprofile> {
       <div>
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
-            <Label htmlFor="username">Username:</Label>
+            <Label className="updatetext" htmlFor="username">Username:</Label>
             <Input
               onChange={(e) => this.setState({ username: e.target.value })}
               name="username"
@@ -65,7 +78,7 @@ class Login extends Component<any, loginprofile> {
             <FormFeedback></FormFeedback>
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="password">Password:</Label>
+            <Label className="updatetext" htmlFor="password">Password:</Label>
             <Input
               onChange={(e) => this.setState({ password: e.target.value })}
               name="password"
@@ -77,7 +90,7 @@ class Login extends Component<any, loginprofile> {
             />
             <FormFeedback></FormFeedback>
           </FormGroup>
-          <Button type="submit">Submit</Button>
+          <Button id="ButtonSpace" className="Button" type="submit">Login</Button>
         </Form>
       </div>
     );

@@ -19,6 +19,7 @@ class LoginPage extends Component<any> {
         if (localStorage.getItem('token') === 'undefined'){
           localStorage.clear();
           this.setState({ sessionToken: '' });
+          this.setState({ authorization: false})
         } else if (localStorage.getItem('token')) {
           this.setState({sessionToken: localStorage.getItem('token')})
         }

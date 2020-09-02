@@ -22,7 +22,7 @@ class Auth extends Component<any> {
   }
 
   title() {
-    return this.state.login ? "Login" : "Signup";
+    return this.state.login ? "Login" : "Register";
   }
 
   loginToggle(event: any) {
@@ -44,32 +44,45 @@ class Auth extends Component<any> {
     return (
       <div className="main">
         <h4>
-          If you return to this page instead of your profile after trying to
-          login, your username or password is incorrect.
+          Please Login Using The Button Below.
         </h4>
         <div className="mainDiv">
-          <Button onClick={this.toggle}>Login</Button>
+          <Button id="ButtonSpace" className="Button mainModalButton" onClick={this.toggle}>
+            Register or Login
+          </Button>
           {!this.state.login ? (
-            <Modal isOpen={this.state.modal} toggle={this.toggle}>
-              <ModalHeader toggle={this.toggle}>{this.title()}</ModalHeader>
+            <Modal
+              className="updateprofilemodal"
+              isOpen={this.state.modal}
+              toggle={this.toggle}
+            >
+              <h5>Update Profile</h5>
+          <button
+            type="button"
+            className="close Button"
+            aria-label="Close"
+            onClick={this.toggle}
+          >
+            <span aria-hidden="true" className="CloseButton">Close</span>
+          </button>
               <ModalBody>
                 <Signup updateToken={this.updateToken} toggle={this.toggle} />
               </ModalBody>
               <ModalFooter>
-                <Button onClick={this.loginToggle}>
-                  {!this.state.login ? "Login" : "Signup"}
+                <Button id="ButtonSpace" className="Button" onClick={this.loginToggle}>
+                  {!this.state.login ? "Already have an Account?: Login" : "Don't have an Account?: Register"}
                 </Button>
               </ModalFooter>
             </Modal>
           ) : (
-            <Modal isOpen={this.state.modal} toggle={this.toggle}>
+            <Modal className="updateprofilemodal" isOpen={this.state.modal} toggle={this.toggle}>
               <ModalHeader toggle={this.toggle}>{this.title()}</ModalHeader>
               <ModalBody>
                 <Login updateToken={this.updateToken} toggle={this.toggle} />
               </ModalBody>
               <ModalFooter>
-                <Button onClick={this.loginToggle}>
-                  {this.state.login ? "Signup" : "Login"}
+                <Button id="ButtonSpace" className="Button" onClick={this.loginToggle}>
+                  {this.state.login ? "Don't have an Account?: Register" : "Already have an Account?: Login"}
                 </Button>
               </ModalFooter>
             </Modal>
