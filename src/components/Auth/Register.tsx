@@ -124,7 +124,7 @@ class Register extends Component<any, registerprofile> {
               value={this.state.lastName}
             />
           </FormGroup>
-          <Button id="ButtonSpace" className="Button" type="submit">Register</Button>
+          <Button id="ButtonSpace color1" className="Button" type="submit">Register</Button>
         </Form>
       </div>
     );

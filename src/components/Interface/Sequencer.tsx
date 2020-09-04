@@ -38,7 +38,7 @@ interface sequencerState {
   projectInfo: any;
 }
 
-const synth = new PolySynth().toMaster();
+const synth = new PolySynth().toDestination();
 
 class Sequencer extends Component<any, sequencerState> {
   state: sequencerState;
@@ -75,6 +75,8 @@ class Sequencer extends Component<any, sequencerState> {
     this.loadProjectList = this.loadProjectList.bind(this);
     this.toggleDrop = this.toggleDrop.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.deleteProject = this.deleteProject.bind(this);
+    this.saveProject = this.saveProject.bind(this);
     this.check1OptionHandleChange = this.check1OptionHandleChange.bind(this);
     this.check2OptionHandleChange = this.check2OptionHandleChange.bind(this);
     this.check3OptionHandleChange = this.check3OptionHandleChange.bind(this);
@@ -146,6 +148,60 @@ class Sequencer extends Component<any, sequencerState> {
       });
   }
 
+  deleteProject() {
+    fetch(`http://localhost:3002/project/delete/${this.state.projectName}`, {
+      method: "DELETE",
+      headers: new Headers({
+        Authorization: this.state.sessionToken,
+        "Content-Type": "application/json",
+      }),
+    })
+    .then((response) => response.json())
+      .then((data) => {
+        this.setState({ projectResponse: data.message });
+        console.log(this.state.projectResponse);
+      });
+      window.location.reload(true);
+  }
+
+  saveProject(event: any) {
+    event.preventDefault();
+
+    fetch(`http://localhost:3002/project/save/${this.state.projectName}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        project: {
+          projectName: this.state.projectName,
+          check1: this.state.check1,
+          check2: this.state.check2,
+          check3: this.state.check3,
+          check4: this.state.check4,
+          check5: this.state.check5,
+          check6: this.state.check6,
+          check7: this.state.check7,
+          check8: this.state.check8,
+          check1Note: this.state.check1Note,
+          check2Note: this.state.check2Note,
+          check3Note: this.state.check3Note,
+          check4Note: this.state.check4Note,
+          check5Note: this.state.check5Note,
+          check6Note: this.state.check6Note,
+          check7Note: this.state.check7Note,
+          check8Note: this.state.check8Note,
+        },
+      }),
+      headers: new Headers({
+        Authorization: this.state.sessionToken,
+        "Content-Type": "application/json",
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({ projectResponse: data.message });
+        console.log(this.state.projectResponse);
+      });
+  }
+
   createProject(event: any) {
     event.preventDefault();
 
@@ -204,6 +260,7 @@ class Sequencer extends Component<any, sequencerState> {
       "8n"
     );
     if (this.state.toggleOn) {
+      
       Transport.start();
       start();
       sequence.start(0);
@@ -504,8 +561,10 @@ class Sequencer extends Component<any, sequencerState> {
           </div>
           </div>
           <h6>Pause and Replay to Update Playing Melody</h6>
-          <Button onClick={this.toggle} className="Play-Pause">Play/Pause</Button>
-          <h5>Save Your Project</h5>
+          <Button onClick={this.toggle} id="color1" className="Play-Pause">Play/Pause</Button>
+          <h5>Delete Current Project</h5>
+          <Button onClick={this.deleteProject} className="Button">Delete Current Project</Button>
+          <h5>Save Your Project (No Spaces Allowed)</h5>
           <Form onSubmit={this.createProject}>
             <FormGroup className="projectform">
               <Input
@@ -513,18 +572,21 @@ class Sequencer extends Component<any, sequencerState> {
                 name="Project Name"
                 value={this.state.projectName}
                 required
+                pattern="[^\s]+"
                 placeholder="My Project"
                 minLength={4}
               />
             </FormGroup>
-            <Button type="submit" className="SubmitButton">Save</Button>
+            <Button type="submit" id="color1" className="SubmitButton">Save As New Project</Button>
           </Form>
+          <Button className="SubmitButton" onClick={this.saveProject}>Update Project</Button>
           <h1>{this.state.projectResponse}</h1>
         </div>
         <div>
           <h5>Load Project</h5>
           <ButtonDropdown>
             <DropdownToggle
+              id="color1"
               className="Button"
               caret
               onClick={this.loadProjectList}
@@ -534,7 +596,7 @@ class Sequencer extends Component<any, sequencerState> {
             <DropdownMenu className="releaseMenu">
               <DropdownItem header>Your Projects</DropdownItem>
               {this.state.projects.map((d: any) => (
-                <DropdownItem className="ProjectButton" onClick={() => this.handleClick(d)}>
+                <DropdownItem id="color1" className="ProjectButton" onClick={() => this.handleClick(d)}>
                   {d.projectName}
                 </DropdownItem>
               ))}

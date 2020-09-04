@@ -1,19 +1,25 @@
 import React, { Component } from "react";
 import "../../App.css";
-import { Col, Row } from "reactstrap";
+import { Col, Row, Form, Input, Button } from "reactstrap";
 import { Link, Route, Switch } from "react-router-dom";
 import Home from "./Home";
 import LoginPage from "./LoginPage";
 import Sequencer from "./Sequencer";
 
-class Header extends Component<any> {
+interface registerprofile {
+  colorstate1: string;
+  colorstate2: string;
+  colorstate3: string;
+}
+
+class Header extends Component<any, registerprofile> {
   constructor(props: any) {
     super(props);
-  }
+    };
 
   render() {
     return (
-      <div className="Navbar">
+      <div className="Navbar" id="color1">
         <Row>
           <Col className="nav-link">
             <Link
@@ -25,17 +31,17 @@ class Header extends Component<any> {
             </Link>
           </Col>
           <Col className="nav-link">
-            <Link to="/profile" className="nav-link-link">
+            <Link to="/profile" className="nav-link-link" id="color2">
               Profile
             </Link>
           </Col>
           <Col className="nav-link">
-            <Link to="/sequencer" className="nav-link-link">
+            <Link to="/sequencer" className="nav-link-link" id="color2">
               Sequencer
             </Link>
           </Col>
           <Col className="nav-link">
-            <Link to="/home" className="nav-link-link">
+            <Link to="/home" className="nav-link-link" id="color2">
               Home
             </Link>
           </Col>

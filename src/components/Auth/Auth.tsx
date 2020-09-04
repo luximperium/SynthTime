@@ -47,7 +47,7 @@ class Auth extends Component<any> {
           Please Login Using The Button Below.
         </h4>
         <div className="mainDiv">
-          <Button id="ButtonSpace" className="Button mainModalButton" onClick={this.toggle}>
+          <Button id="ButtonSpace color1" className="Button mainModalButton" onClick={this.toggle}>
             Register or Login
           </Button>
           {!this.state.login ? (
@@ -59,6 +59,7 @@ class Auth extends Component<any> {
               <h5>Update Profile</h5>
           <button
             type="button"
+            id="color1"
             className="close Button"
             aria-label="Close"
             onClick={this.toggle}
@@ -69,7 +70,7 @@ class Auth extends Component<any> {
                 <Signup updateToken={this.updateToken} toggle={this.toggle} />
               </ModalBody>
               <ModalFooter>
-                <Button id="ButtonSpace" className="Button" onClick={this.loginToggle}>
+                <Button id="ButtonSpace color1" className="Button" onClick={this.loginToggle}>
                   {!this.state.login ? "Already have an Account?: Login" : "Don't have an Account?: Register"}
                 </Button>
               </ModalFooter>
@@ -81,7 +82,7 @@ class Auth extends Component<any> {
                 <Login updateToken={this.updateToken} toggle={this.toggle} />
               </ModalBody>
               <ModalFooter>
-                <Button id="ButtonSpace" className="Button" onClick={this.loginToggle}>
+                <Button id="ButtonSpace color1" className="Button" onClick={this.loginToggle}>
                   {this.state.login ? "Don't have an Account?: Register" : "Already have an Account?: Login"}
                 </Button>
               </ModalFooter>

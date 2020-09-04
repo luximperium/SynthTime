@@ -90,7 +90,7 @@ class Login extends Component<any, loginprofile> {
             />
             <FormFeedback></FormFeedback>
           </FormGroup>
-          <Button id="ButtonSpace" className="Button" type="submit">Login</Button>
+          <Button id="ButtonSpace color1" className="Button" type="submit">Login</Button>
         </Form>
       </div>
     );

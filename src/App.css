@@ -30,7 +30,7 @@ body {
 }
 
 .nav-link-link:hover {
-  color: darkolivegreen;
+  color: black;
 }
 .main-content {
   margin-top: 5em;
@@ -185,4 +185,9 @@ body {
 
 .CloseButton {
   color: whitesmoke;
+}
+.DeleteButton {
+  background-color: darkred;
+  color: whitesmoke;
+  border: solid 3px black;
 }

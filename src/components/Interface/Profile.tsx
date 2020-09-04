@@ -11,6 +11,7 @@ import {
   FormGroup,
   FormFeedback,
 } from "reactstrap";
+import { Link } from 'react-router-dom'
 
 interface sequencerState {
   username: string;
@@ -32,7 +33,9 @@ class Profile extends Component<any, sequencerState> {
       sessionToken: props.token,
     };
     this.toggle = this.toggle.bind(this);
+    this.toggleClose = this.toggleClose.bind(this);
     this.updateProfile = this.updateProfile.bind(this);
+    this.deleteProfile = this.deleteProfile.bind(this);
   }
 
   componentDidMount() {
@@ -108,8 +111,35 @@ class Profile extends Component<any, sequencerState> {
       });
   }
 
+  deleteProfile(event: any) {
+    event.preventDefault();
+
+    fetch(`http://localhost:3002/users/updateprofile/delete`, {
+      method: "DELETE",
+      headers: new Headers({
+        Authorization: this.state.sessionToken,
+        "Content-Type": "application/json",
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        alert(data.message);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+      localStorage.clear();
+      this.setState({ sessionToken: '' });
+      window.location.reload(true);
+    }
+
   toggle() {
     this.setState({ modal: !this.state.modal });
+  }
+
+  toggleClose() {
+    this.setState({ modal: !this.state.modal });
+    window.location.reload(true);
   }
 
   render() {
@@ -130,10 +160,11 @@ class Profile extends Component<any, sequencerState> {
         >
           <h5>Update Profile</h5>
           <button
+            id="color1"
             type="button"
             className="close Button"
             aria-label="Close"
-            onClick={this.toggle}
+            onClick={this.toggleClose}
           >
             <span aria-hidden="true" className="CloseButton">Close</span>
           </button>
@@ -171,14 +202,11 @@ class Profile extends Component<any, sequencerState> {
                 />
                 <FormFeedback></FormFeedback>
               </FormGroup>
-              <Button type="submit" id="savechanges" className="Button">
+              <Button type="submit" id="savechanges color1" className="Button">
                 Save Changes
               </Button>
-              <h4>
-                Note: If you do not save changes and instead exit out, you will
-                see your profile as if you saved changes, but on refresh of the
-                page, it will revert back to the original state.
-              </h4>
+              <h1>Delete Account</h1>
+              <Link to="/home"><Button onClick={this.deleteProfile} className="DeleteButton">Delete Account</Button></Link>
             </Form>
           </ModalBody>
         </Modal>

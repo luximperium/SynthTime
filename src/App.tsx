@@ -26,6 +26,7 @@ class App extends Component<any> {
   clearToken() {
     localStorage.clear();
     this.setState({ sessionToken: '' });
+    alert("You've Logged Out!")
   }
 
   render() {
