@@ -11,6 +11,7 @@ import {
   DropdownMenu,
 } from "reactstrap";
 import { PolySynth, Sequence, Transport, start } from "tone";
+import APIURL from '../helpers/environment'
 
 interface sequencerState {
   projectName: string;
@@ -100,7 +101,7 @@ class Sequencer extends Component<any, sequencerState> {
       localStorage.clear();
       alert('You must be logged in to do this.')
     } else if (localStorage.getItem('token')) {
-    fetch(`http://localhost:3002/project/users/mine`, {
+    fetch(`${APIURL}/project/users/mine`, {
       method: "GET",
       headers: new Headers({
         Authorization: this.state.sessionToken,
@@ -119,7 +120,7 @@ class Sequencer extends Component<any, sequencerState> {
   }
 
   loadProject(incomingdata: any) {
-    fetch(`http://localhost:3002/project/${incomingdata}`, {
+    fetch(`${APIURL}/project/${incomingdata}`, {
       method: "GET",
       headers: new Headers({
         Authorization: this.state.sessionToken,
@@ -149,7 +150,7 @@ class Sequencer extends Component<any, sequencerState> {
   }
 
   deleteProject() {
-    fetch(`http://localhost:3002/project/delete/${this.state.projectName}`, {
+    fetch(`${APIURL}/project/delete/${this.state.projectName}`, {
       method: "DELETE",
       headers: new Headers({
         Authorization: this.state.sessionToken,
@@ -167,7 +168,7 @@ class Sequencer extends Component<any, sequencerState> {
   saveProject(event: any) {
     event.preventDefault();
 
-    fetch(`http://localhost:3002/project/save/${this.state.projectName}`, {
+    fetch(`${APIURL}/project/save/${this.state.projectName}`, {
       method: "PUT",
       body: JSON.stringify({
         project: {
@@ -205,7 +206,7 @@ class Sequencer extends Component<any, sequencerState> {
   createProject(event: any) {
     event.preventDefault();
 
-    fetch(`http://localhost:3002/project/create`, {
+    fetch(`${APIURL}/project/create`, {
       method: "POST",
       body: JSON.stringify({
         project: {

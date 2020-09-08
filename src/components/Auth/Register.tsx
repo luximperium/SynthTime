@@ -7,6 +7,7 @@ import {
   Button,
   FormFeedback,
 } from "reactstrap";
+import APIURL from '../helpers/environment'
 // import validateSignup from './validateSignup';
 
 interface registerprofile {
@@ -35,7 +36,7 @@ class Register extends Component<any, registerprofile> {
   handleSubmit(event: any) {
     event.preventDefault();
     //setIsSubmitting to true to be called in useEffect
-    fetch(`http://localhost:3002/users/register`, {
+    fetch(`${APIURL}/users/register`, {
       method: "POST",
       body: JSON.stringify({
         user: {

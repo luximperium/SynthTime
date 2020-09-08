@@ -6,6 +6,7 @@ import Home from "./Home";
 import LoginPage from "./LoginPage";
 import Sequencer from "./Sequencer";
 import AdminPortal from './AdminPortal';
+import APIURL from '../helpers/environment'
 
 interface registerprofile {
   isAdmin: boolean;
@@ -19,7 +20,7 @@ class Header extends Component<any, registerprofile> {
 
   componentDidMount() {
     if (localStorage.getItem('token')) {
-    fetch(`http://localhost:3002/users/myprofile/me`, {
+    fetch(`${APIURL}/users/myprofile/me`, {
       method: "GET",
       headers: new Headers({
         Authorization: String(localStorage.getItem('token')),
@@ -38,7 +39,7 @@ class Header extends Component<any, registerprofile> {
   Logout(event: any) {
     event.preventDefault();
     this.props.clickLogout()
-    window.location.replace('http://localhost:3000/home');
+    window.location.replace('https://synthtime.herokuapp.com/home');
   }
 
   render() {

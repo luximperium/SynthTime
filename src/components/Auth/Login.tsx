@@ -8,6 +8,7 @@ import {
   Input,
   Button,
 } from "reactstrap";
+import APIURL from '../helpers/environment'
 // import validateLogin from './validateLogin'
 
 interface loginprofile {
@@ -39,7 +40,7 @@ class Login extends Component<any, loginprofile> {
 
   handleSubmit(event: any) {
     event.preventDefault();
-    fetch(`http://localhost:3002/users/login`, {
+    fetch(`${APIURL}/users/login`, {
       method: "POST",
       body: JSON.stringify({
         users: { username: this.state.username, password: this.state.password },

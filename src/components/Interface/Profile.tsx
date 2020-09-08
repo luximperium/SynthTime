@@ -12,6 +12,7 @@ import {
   FormFeedback,
 } from "reactstrap";
 import { Link } from 'react-router-dom'
+import APIURL from "../helpers/environment";
 
 interface sequencerState {
   username: string;
@@ -39,7 +40,7 @@ class Profile extends Component<any, sequencerState> {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3002/users/myprofile/me`, {
+    fetch(`${APIURL}/users/myprofile/me`, {
       method: "GET",
       headers: new Headers({
         Authorization: this.state.sessionToken,
@@ -68,7 +69,7 @@ class Profile extends Component<any, sequencerState> {
   updateProfile(event: any) {
     event.preventDefault();
 
-    fetch(`http://localhost:3002/users/updateprofile/bio`, {
+    fetch(`${APIURL}/users/updateprofile/bio`, {
       method: "PUT",
       body: JSON.stringify({
         user: {
@@ -89,7 +90,7 @@ class Profile extends Component<any, sequencerState> {
         console.error(error);
       });
 
-    fetch(`http://localhost:3002/users/updateprofile/pic`, {
+    fetch(`${APIURL}/users/updateprofile/pic`, {
       method: "PUT",
       body: JSON.stringify({
         user: {
@@ -114,7 +115,7 @@ class Profile extends Component<any, sequencerState> {
   deleteProfile(event: any) {
     event.preventDefault();
 
-    fetch(`http://localhost:3002/users/updateprofile/delete`, {
+    fetch(`${APIURL}/users/updateprofile/delete`, {
       method: "DELETE",
       headers: new Headers({
         Authorization: this.state.sessionToken,

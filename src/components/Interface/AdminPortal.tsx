@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../../App.css";
 import { Col, Row } from "reactstrap";
+import APIURL from '../helpers/environment'
 
 interface AdminTypes {
   userinfo: any;
@@ -24,7 +25,7 @@ class AdminPortal extends Component<any, AdminTypes> {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3002/users/allusers/allusers`, {
+    fetch(`${APIURL}/users/allusers/allusers`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -40,7 +41,7 @@ class AdminPortal extends Component<any, AdminTypes> {
   }
 
   makeAdmin() {
-    fetch(`http://localhost:3002/users/allusers/${this.state.selecteduserid}`, {
+    fetch(`${APIURL}/users/allusers/${this.state.selecteduserid}`, {
       method: "PUT",
       body: JSON.stringify({
         user: {
@@ -62,7 +63,7 @@ class AdminPortal extends Component<any, AdminTypes> {
   }
 
   takeAdmin() {
-    fetch(`http://localhost:3002/users/allusers/${this.state.selecteduserid}`, {
+    fetch(`${APIURL}/users/allusers/${this.state.selecteduserid}`, {
       method: "PUT",
       body: JSON.stringify({
         user: {
@@ -93,7 +94,7 @@ class AdminPortal extends Component<any, AdminTypes> {
 
   deleteAccount() {
     fetch(
-      `http://localhost:3002/users/delete/${this.state.selecteduseridfordeletion}`,
+      `${APIURL}/users/delete/${this.state.selecteduseridfordeletion}`,
       {
         method: "DELETE",
         headers: new Headers({
