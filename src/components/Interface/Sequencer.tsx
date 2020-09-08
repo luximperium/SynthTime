@@ -111,8 +111,12 @@ class Sequencer extends Component<any, sequencerState> {
       .then((response) => response.json())
       .then((data) => {
         this.setState({ projects: data });
+        console.log(this.state.projects);
         console.log(data);
-      });
+      })
+      .catch((error) => {
+        console.error(error);
+      })
     } else {
       alert('You must be logged in to do this.')
       localStorage.clear();
