@@ -39,7 +39,7 @@ class Header extends Component<any, registerprofile> {
   Logout(event: any) {
     event.preventDefault();
     this.props.clickLogout()
-    window.location.replace('https://synthtime.herokuapp.com/home');
+    window.location.replace('https://synth-time.herokuapp.com/home');
   }
 
   render() {

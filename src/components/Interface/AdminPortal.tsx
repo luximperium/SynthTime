@@ -2,6 +2,16 @@ import React, { Component } from "react";
 import "../../App.css";
 import { Col, Row } from "reactstrap";
 import APIURL from '../helpers/environment'
+import styled from 'styled-components'
+
+const StyledContainer = styled.div`
+  text-align: center;
+  padding: 30px;
+  background: linear-gradient(black 0%, gray 50%);
+  border-top: solid 1em black;
+  border-bottom: solid 1em black;
+  text-align: center;
+`;
 
 interface AdminTypes {
   userinfo: any;
@@ -111,7 +121,7 @@ class AdminPortal extends Component<any, AdminTypes> {
 
   render() {
     return (
-      <div className="home-content-container">
+      <StyledContainer>
         <div>
           <h2 className="bio">Admin Granting:</h2>
           <table>
@@ -161,7 +171,7 @@ class AdminPortal extends Component<any, AdminTypes> {
           ))}
           <button className="Button" onClick={this.deleteAccount}>Delete Forever</button>
         </div>
-      </div>
+      </StyledContainer>
     );
   }
 }
