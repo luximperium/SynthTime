@@ -77,7 +77,15 @@ class Auth extends Component<any> {
             </Modal>
           ) : (
             <Modal className="updateprofilemodal" isOpen={this.state.modal} toggle={this.toggle}>
-              <ModalHeader toggle={this.toggle}>{this.title()}</ModalHeader>
+              <button
+            type="button"
+            id="color1"
+            className="close Button"
+            aria-label="Close"
+            onClick={this.toggle}
+          >
+            <span aria-hidden="true" className="CloseButton">Close</span>
+          </button>
               <ModalBody>
                 <Login updateToken={this.updateToken} toggle={this.toggle} />
               </ModalBody>

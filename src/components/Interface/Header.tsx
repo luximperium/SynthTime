@@ -5,17 +5,41 @@ import { Link, Route, Switch } from "react-router-dom";
 import Home from "./Home";
 import LoginPage from "./LoginPage";
 import Sequencer from "./Sequencer";
+import AdminPortal from './AdminPortal';
 
 interface registerprofile {
-  colorstate1: string;
-  colorstate2: string;
-  colorstate3: string;
+  isAdmin: boolean;
 }
 
 class Header extends Component<any, registerprofile> {
   constructor(props: any) {
     super(props);
+    this.state = { isAdmin: false }
     };
+
+  componentDidMount() {
+    if (localStorage.getItem('token')) {
+    fetch(`http://localhost:3002/users/myprofile/me`, {
+      method: "GET",
+      headers: new Headers({
+        Authorization: String(localStorage.getItem('token')),
+        "Content-Type": "application/json",
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({ isAdmin: data.isAdmin })
+      });
+  } else {
+    this.setState({ isAdmin: false })
+  }
+}
+
+  Logout(event: any) {
+    event.preventDefault();
+    this.props.clickLogout()
+    window.location.replace('http://localhost:3000/home');
+  }
 
   render() {
     return (
@@ -25,11 +49,19 @@ class Header extends Component<any, registerprofile> {
             <Link
               to="/home"
               className="nav-link-link"
-              onClick={this.props.clickLogout}
+              onClick={(event) => this.Logout(event)}
             >
               Logout
             </Link>
           </Col>
+            {this.state.isAdmin ?
+            <Col className="nav-link">
+            <Link to="/adminportal" className="nav-link-link" id="color2">
+              Admin Portal
+            </Link>
+            </Col>
+            : null
+          }
           <Col className="nav-link">
             <Link to="/profile" className="nav-link-link" id="color2">
               Profile
@@ -48,6 +80,11 @@ class Header extends Component<any, registerprofile> {
         </Row>
         <div>
           <Switch>
+          <Route exact path="/adminportal">
+              <div className="main-content">
+                <AdminPortal />
+              </div>
+            </Route>
             <Route exact path="/">
               <div className="main-content">
                 <Home />

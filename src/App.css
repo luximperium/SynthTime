@@ -184,6 +184,7 @@ body {
 }
 
 .CloseButton {
+  background-color: darkolivegreen;
   color: whitesmoke;
 }
 .DeleteButton {
